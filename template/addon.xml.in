@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon id="pvr.hdhomerundvr"
+       version="@PVR_VERSION_STRING@"
+       name="HDHomeRun DVR PVR Client"
+       provider-name="Michael Brehm (djp952)">
+
+	<requires>
+		<import addon="kodi.binary.global.main" version="2.0.3"/>
+		<import addon="kodi.binary.global.general" version="1.0.5"/>
+		<import addon="kodi.binary.global.filesystem" version="1.1.11"/>
+		<import addon="kodi.binary.global.gui" version="5.15.1"/>
+		<import addon="kodi.binary.instance.pvr" version="9.2.0"/>
+	</requires>
+
+	<extension point="kodi.pvrclient"
+	           needs_configuration="false"
+	           library_android="libhdhomerundvr.so"/>
+
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en_GB">HDHomeRun DVR PVR Client</summary>
+
+		<description lang="en_GB">HDHomeRun DVR frontend. Supports streaming Live TV, Recordings, Electronic Program Guide (EPG) and Timers. Requires a SiliconDust HDHomeRun DVR Service subscription (https://www.silicondust.com/dvr-service) and an active HDHomeRun RECORD device on the local network.</description>
+
+		<news>@PVR_VERSION_STRING@ - Android build</news>
+
+		<license>MIT</license>
+
+		<website>https://github.com/djp952/pvr.hdhomerundvr/wiki</website>
+
+		<source>https://github.com/djp952/pvr.hdhomerundvr</source>
+
+		<assets>
+			<icon>resources/icon.png</icon>
+		</assets>
+
+		<platform>android-aarch64</platform>
+	</extension>
+
+</addon>

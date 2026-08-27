@@ -1076,7 +1076,7 @@ void discover_recordings(sqlite3* instance, bool& changed)
 		"with storage(deviceid, url) as(select deviceid, url_append_query_string(json_extract(device.data, '$.StorageURL'), 'DisplayGroupID=root') from device "
 		"where json_extract(device.data, '$.StorageURL') is not null) "
 		"select distinct storage.deviceid as deviceid, json_extract(displaygroup.value, '$.SeriesID') as seriesid, "
-		"max(cast(json_extract(displaygroup.value, '$.UpdateID') as integer)) as updateid, json_extract(displaygroup.value, '$.EpisodesURL') as episodesurl "
+		"max(cast(json_extract(displaygroup.value, '$.StartTime') as integer)) as updateid, json_extract(displaygroup.value, '$.EpisodesURL') as episodesurl "
 		"from storage, json_each(json_get(storage.url)) as displaygroup "
 		"group by deviceid, seriesid, episodesurl");
 
@@ -1141,7 +1141,7 @@ static void discover_series_recordings(sqlite3* instance, char const* seriesid)
 		"with storage(deviceid, url) as(select deviceid, url_append_query_string(json_extract(device.data, '$.StorageURL'), 'DisplayGroupID=root') from device "
 		"where json_extract(device.data, '$.StorageURL') is not null) "
 		"select distinct storage.deviceid as deviceid, json_extract(displaygroup.value, '$.SeriesID') as seriesid, "
-		"json_extract(displaygroup.value, '$.UpdateID') as updateid, json_extract(displaygroup.value, '$.EpisodesURL') as episodesurl "
+		"cast(json_extract(displaygroup.value, '$.StartTime') as integer) as updateid, json_extract(displaygroup.value, '$.EpisodesURL') as episodesurl "
 		"from storage, json_each(json_get(storage.url)) as displaygroup where seriesid like ?1", seriesid);
 
 	try {
